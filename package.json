@@ -1,0 +1,26 @@
+{
+  "name": "app-native-template-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": {
+    "packages": [
+      "api",
+      "frontend"
+    ]
+  },
+  "scripts": {
+    "setup:frontend": "cd frontend && yarn install",
+    "setup:api": "cd api && yarn install",
+    "start:frontend": "yarn workspace frontend start:dev",
+    "start:api": "yarn workspace api start:dev",
+    "deploy:api": "cd api && aws s3 sync build/ s3://api-nshop.unicsoftware.com.br --acl public-read",
+    "deploy:frontend": "cd frontend && tsc && vite build && aws s3 sync dist/ s3://api-nshop.unicsoftware.com.br --acl public-read"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=16.14"
+  },
+  "packageManager": "yarn@3.2.2"
+}
